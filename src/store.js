@@ -6,7 +6,11 @@ Vue.use(Vuex)
 // Default State values
 export const DEFAULT_STATE = {
   token: null,
-  user: null,
+  user: {
+    profile: {
+      fullname: null
+    }
+  },
   is_logged: false,
 }
 
@@ -37,7 +41,7 @@ export default new Vuex.Store({
     setIsLogged(context, is_logged) {
       context.commit('SET_ISLOGGED', is_logged)
     },
-    logOut(context) {
+    setLogOut(context) {
       context.commit('SET_TOKEN', DEFAULT_STATE.token)
       context.commit('SET_USER', DEFAULT_STATE.user)
       context.commit('SET_ISLOGGED', DEFAULT_STATE.is_logged)
