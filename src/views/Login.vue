@@ -61,6 +61,7 @@
 
 <script>
   import API from '../api';
+  import { mapActions } from 'vuex'
 
   export default {
     name: 'login',
@@ -83,6 +84,11 @@
       }
     },
     methods: {
+      ...mapActions([
+        'setToken',
+        'setUser',
+        'setIsLogged',
+      ]),
       validateForm () {
         if (this.$refs.login_form.validate()) {
           API.post('user/login', { email: this.email, password: this.password }, {
@@ -92,12 +98,16 @@
               }
             })
             .then(response => {
-              console.log(response)
-              this.request_error_message = ''
+              // Login sequence
               this.resetValidation()
+              this.setToken(response.data.token)
+              this.setUser(response.data.user)
+              this.setIsLogged(true)
+              this.$router.push('logged-in')
             })
             .catch(error => {
               // Setting up error messages
+              this.setIsLogged(false)
               switch(this.request_status) {
                 case 403:
                 case 404:
@@ -112,10 +122,8 @@
             })
         }
       },
-      resetForm () {
-        this.$refs.login_form.reset()
-      },
       resetValidation () {
+        this.request_error_message = ''
         this.$refs.login_form.resetValidation()
       },
     }
