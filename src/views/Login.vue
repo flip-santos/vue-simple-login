@@ -1,7 +1,14 @@
 <template>
   <v-app class="login-page">
 
-    <v-alert class="login-page__alert" type="error" v-if="request_error_message">
+    <v-alert 
+      class="login-page__alert"
+      v-if="request_error_message"
+      border="left"
+      colored-border
+      color="pink accent-3"
+      elevation="2"
+    >
       {{ request_error_message }}
     </v-alert>
 
@@ -9,10 +16,8 @@
       <v-container class="fill-height" fluid>
         <v-row align="center" justify="center" >
           <v-col cols="12" sm="8" md="4" >
+            <img class="login-page__logo" src="../assets/bambee-symbol-white.svg" title="Bambee" />
             <v-card class="elevation-12">
-              <v-toolbar color="primary" dark flat>
-                <v-toolbar-title>Login form</v-toolbar-title>                
-              </v-toolbar>
               <v-card-text>
                 
                 <v-form ref="login_form" v-model="valid" :lazy-validation="lazy">
@@ -44,6 +49,7 @@
                 <v-spacer />
                 
                 <v-btn 
+                  class="login-page__btn-login"
                   data-e2e="submit-btn"
                   color="primary" 
                   :disabled="!valid" 
@@ -62,11 +68,22 @@
 </template>
 
 <style lang="scss">
-  .login-page__alert {
-    position: absolute !important;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
+  .login-page {
+    background: transparent !important;
+    &__alert {
+      position: absolute !important;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+    }
+    &__logo {
+      width: 180px;
+      margin-bottom: 20px;
+    }
+    &__btn-login {
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
   }
 </style>
 

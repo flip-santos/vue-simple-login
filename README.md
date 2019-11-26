@@ -6,6 +6,7 @@ My goal with this structure is to be simple and easy to understand. It doesen't 
 
 ## Production Example
 ```
+https://vue-bambee-login.herokuapp.com/
 
 ```
 
