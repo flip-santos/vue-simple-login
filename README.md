@@ -1,4 +1,13 @@
-# vue-simple-login
+# Vue.js Bambee.tech login
+
+This project is only for use from Bambee.tech team. It uses bambee.tech login api to show an simple Vue.js implementation with unit and integration testing with Cypress.io.
+
+My goal with this structure is to be simple and easy to understand. It doesen't uses any custom components or unnecessary modularizations.
+
+## Production Example
+```
+
+```
 
 ## Project setup
 ```
@@ -15,20 +24,13 @@ yarn serve
 yarn build
 ```
 
-### Run your unit tests
+### Run tests without Cypress.io GUI
 ```
-yarn test:unit
+yarn test
 ```
 
-### Run your end-to-end tests
+### Run tests with Cypress.io GUI
 ```
 yarn test:e2e
 ```
 
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
