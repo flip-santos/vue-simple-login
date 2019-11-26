@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate';
 
 Vue.use(Vuex)
 
@@ -15,6 +16,7 @@ export const DEFAULT_STATE = {
 }
 
 export default new Vuex.Store({
+  plugins: [createPersistedState()],
   state: {
     token: DEFAULT_STATE.token,
     user: DEFAULT_STATE.user,
@@ -23,6 +25,7 @@ export default new Vuex.Store({
   mutations: {
     ['SET_TOKEN'] (state, token) {
       state.token = token
+
     },
     ['SET_USER'] (state, user) {
       state.user = user
