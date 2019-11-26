@@ -44,23 +44,7 @@ describe('Login.vue', () => {
       cy.wait(1000)
     })
     
-    it(`Can't login with an invalid user`, () => {
-      cy.get(email_selector).type(invalid_user)
-      cy.get(password_selector).type(invalid_password)
-      cy.get(login_btn_selector).click()
-      cy.wait(3000)
-      cy.get('.v-alert__content').contains('Error: Request failed with status code 404')
-    })
-
-    it(`Can't login with an invalid password`, () => {
-      cy.get(email_selector).type(valid_user)
-      cy.get(password_selector).type(invalid_password)
-      cy.get(login_btn_selector).click()
-      cy.wait(3000)
-      cy.get('.v-alert__content').contains('Error: Request failed with status code 403')
-    })
-
-    it('Redirect to /logged-in after login', () => {
+    it('[Scenario 1] Redirect to /logged-in after login', () => {
       cy.get(email_selector).type(valid_user)
       cy.get(password_selector).type(valid_password)
       cy.get(login_btn_selector).click()
@@ -68,10 +52,33 @@ describe('Login.vue', () => {
       cy.url().should('include', '/logged-in')
     })
 
+    it(`[Scenario 2] Can't login with an invalid user`, () => {
+      cy.get(email_selector).type(invalid_user)
+      cy.get(password_selector).type(invalid_password)
+      cy.get(login_btn_selector).click()
+      cy.wait(3000)
+      cy.get('.v-alert__content').contains('Error: Request failed with status code 404')
+    })
+
+    it(`[Scenario 2] Can't login with an invalid password`, () => {
+      cy.get(email_selector).type(valid_user)
+      cy.get(password_selector).type(invalid_password)
+      cy.get(login_btn_selector).click()
+      cy.wait(3000)
+      cy.get('.v-alert__content').contains('Error: Request failed with status code 403')
+    })
+
   })
 
   context('LoggedIn.vue integration testing', () => {
-    it('Redirect back to login after logout', () => {
+    
+    it('[Scenario 3] Redirect user to login if logged in', () => {
+      cy.visit('/logged-in')
+      cy.wait(500)
+      cy.get(email_selector)
+    })
+
+    it('[Scenario 4] Redirect back to login after user logout', () => {
       cy.visit('/')
       cy.wait(1000)
       cy.get(email_selector).type(valid_user)
