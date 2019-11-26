@@ -89,7 +89,7 @@
         ],
         password_rules: [
           v => !!v || 'Password is required',
-          v => /./.test(v) || 'Password must be valid',
+          v => /.{8,}/.test(v) || 'Password must be valid',
         ],
         lazy: false
       }

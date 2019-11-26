@@ -31,11 +31,10 @@ describe('Login.vue', () => {
 
     it('Has password validation', () => {
       cy.get(password_selector)
-        .focus().blur()
+        .type('111')
         .closest('.v-input').find('.v-messages__message')
-        .contains('Password is required')
+        .contains('Password must be valid')
     })
-
   });
 
   context('Login.vue Integration testing', () => {
