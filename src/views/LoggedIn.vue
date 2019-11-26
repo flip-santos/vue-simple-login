@@ -3,7 +3,7 @@
     <v-content>
       <v-container class="fill-height" fluid >
         <h1>Hello {{ user.profile.full_name}}, glad to see you.</h1>
-        <v-btn color="primary" @click="logOut">LogOut</v-btn>
+        <v-btn data-e2e="logout-btn" color="primary" @click="logOut">LogOut</v-btn>
       </v-container>
     </v-content>
   </v-app>
